@@ -26,7 +26,7 @@ public class MutantController {
         }
         try {
             if (mutantService.isMutant(mutant)) {
-                System.out.println("Es mutante");
+                System.out.println("Is mutant");
                 return ResponseEntity.status(HttpStatus.OK).body("");
             } else {
                 System.out.println("No es mutante");
