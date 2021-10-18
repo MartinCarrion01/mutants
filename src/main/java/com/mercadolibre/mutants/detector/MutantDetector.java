@@ -8,6 +8,8 @@ import java.util.List;
 //A esta clase se le asigno la responsabilidad de analizar si el sujeto es mutante.
 public class MutantDetector {
 
+    public int counter;
+
     //Este enum es usado para catalogar un elemento de la matriz segun la direcciones en las que se puede analizar
     //para encontrar mutantes.
     public enum WhereTo {
@@ -17,6 +19,7 @@ public class MutantDetector {
     //Este metodo contiene la logica del analisis de secuencias de ADN
     public boolean dnaAnalyze(Mutant mutant) {
 
+        counter = 0;
         long startTime = System.currentTimeMillis();
         List<char[]> dnaCharArr = new ArrayList<>();
 
@@ -34,7 +37,7 @@ public class MutantDetector {
 
 
                 //Si hay dos o mas cadenas que indiquen que el adn ingresado es mutante, retorno true.
-                if (mutant.getMutantTokens() >= 2) {
+                if (this.counter >= 2) {
                     long endTime = System.currentTimeMillis() - startTime;
                     System.out.println("Se tardó: " + endTime + "ms");
                     return true;
@@ -131,7 +134,7 @@ public class MutantDetector {
     /*
     Verifico si hay una cadena mutante hacia el este del i,j actual.
      */
-    public void eastVerifier(int i, int j, List<char[]> dnaCharArr, Mutant sequence) {
+    public void eastVerifier(int i, int j, List<char[]> dnaCharArr, Mutant mutant) {
 
         char aux = dnaCharArr.get(i)[j];
 
@@ -152,7 +155,7 @@ public class MutantDetector {
             //si encontro una cadena de 4 seguidos, incremento en 1 la cantidad de cadenas mutantes del sujeto de prueba
             if (check == 2) {
                 //System.out.println("Begin: " + i + " , " + j + " east");
-                sequence.Augment();
+                this.counter++;
             }
         }
     }
@@ -160,7 +163,7 @@ public class MutantDetector {
     /*
     Verifico si hay una cadena mutante hacia el sur del i,j actual.
      */
-    public void southVerifier(int i, int j, List<char[]> dnaCharArr, Mutant sequence) {
+    public void southVerifier(int i, int j, List<char[]> dnaCharArr, Mutant mutant) {
 
         char aux = dnaCharArr.get(i)[j];
 
@@ -181,7 +184,7 @@ public class MutantDetector {
             //si encontro una cadena de 4 seguidos, incremento en 1 la cantidad de cadenas mutantes del sujeto de prueba
             if (check == 2) {
                 //System.out.println("Begin: " + i + " , " + j + " south");
-                sequence.Augment();
+                this.counter++;
             }
         }
     }
@@ -189,7 +192,7 @@ public class MutantDetector {
     /*
     Verifico si hay una cadena mutante hacia el sureste del i,j actual.
      */
-    public void southEastVerifier(int i, int j, List<char[]> dnaCharArr, Mutant sequence) {
+    public void southEastVerifier(int i, int j, List<char[]> dnaCharArr, Mutant mutant) {
 
         char aux = dnaCharArr.get(i)[j];
 
@@ -214,7 +217,7 @@ public class MutantDetector {
             //si encontro una cadena de 4 seguidos, incremento en 1 la cantidad de cadenas mutantes del sujeto de prueba
             if (check == 2) {
                 //System.out.println("Begin: " + i + " , " + j + " southeast");
-                sequence.Augment();
+                this.counter++;
             }
         }
     }
@@ -222,7 +225,7 @@ public class MutantDetector {
     /*
     Verifico si hay una cadena mutante hacia el suroeste del i,j actual.
      */
-    public void southWestVerifier(int i, int j, List<char[]> dnaCharArr, Mutant sequence) {
+    public void southWestVerifier(int i, int j, List<char[]> dnaCharArr, Mutant mutant) {
 
         char aux = dnaCharArr.get(i)[j];
 
@@ -247,7 +250,7 @@ public class MutantDetector {
             //si encontro una cadena de 4 seguidos, incremento en 1 la cantidad de cadenas mutantes del sujeto de prueba
             if (check == 2) {
                 //System.out.println("Begin: " + i + " , " + j + " southwest");
-                sequence.Augment();
+                this.counter++;
             }
         }
     }

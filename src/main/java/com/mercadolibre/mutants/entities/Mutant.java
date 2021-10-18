@@ -14,9 +14,5 @@ import java.util.List;
 public class Mutant {
     private Long id;
     private String[] bases;
-    private int mutantTokens = 0;  //Este atributo representa la cantidad de cadenas mutantes que tiene la secuencia de ADN
-
-    public void Augment() {
-        this.mutantTokens++;
-    }
+    private boolean isMutant;
 }

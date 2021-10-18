@@ -12,7 +12,8 @@ public class MutantService {
         try {
             MutantDetector md = new MutantDetector();
             boolean isMutant = md.dnaAnalyze(mutant);
-            return isMutant;
+            mutant.setMutant(isMutant);
+            return mutant.isMutant();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

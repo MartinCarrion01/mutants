@@ -26,10 +26,12 @@ public class MutantController {
         }
         try {
             if (mutantService.isMutant(mutant)) {
-                System.out.println("Is mutant");
+                System.out.println("Es mutante");
+                System.out.println(mutant.toString());
                 return ResponseEntity.status(HttpStatus.OK).body("");
             } else {
                 System.out.println("No es mutante");
+                System.out.println(mutant.toString());
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
             }
         } catch (Exception e) {
