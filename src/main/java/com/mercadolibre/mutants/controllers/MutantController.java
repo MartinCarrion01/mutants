@@ -20,7 +20,6 @@ public class MutantController {
 
     @PostMapping("")
     public ResponseEntity<?> isMutant(@RequestBody Mutant mutant) {
-        System.out.println(mutant.toString());
         for (String s : mutant.getBases()) {
             System.out.println(s);
         }
