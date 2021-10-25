@@ -20,19 +20,24 @@ public class MutantController {
 
     @PostMapping("")
     public ResponseEntity<?> isMutant(@RequestBody Mutant mutant) {
-        for (String s : mutant.getBases()) {
-            System.out.println(s);
-        }
+        System.out.println(mutant.toString());
         try {
             if (mutantService.isMutant(mutant)) {
                 System.out.println("Es mutante");
-                System.out.println(mutant.toString());
                 return ResponseEntity.status(HttpStatus.OK).body("");
             } else {
                 System.out.println("No es mutante");
-                System.out.println(mutant.toString());
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
             }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente más tarde.\"}");
+        }
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<?> stats() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(mutantService.statsService());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente más tarde.\"}");
         }

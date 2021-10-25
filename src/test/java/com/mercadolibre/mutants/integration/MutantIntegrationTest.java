@@ -10,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,7 +28,7 @@ public class MutantIntegrationTest {
     @Order(1)
     void testMutantsSuccessful() throws Exception {
         mockMvc.perform(post("/api/v1/mutant")
-                        .content("{\"bases\": [\"TAAGAAAGG\",\"TAACGAGGG\",\"CCTATCCCT\",\"CAGAGCTGT\",\"GATTCTCGA\",\"CTGAAGCTG\",\"ACTTAACAT\",\"CCTTGCACG\",\"TGGGGGCAG\"]}")
+                        .content("{\"dna\": [\"TAAGAAAGG\",\"TAACGAGGG\",\"CCTATCCCT\",\"CAGAGCTGT\",\"GATTCTCGA\",\"CTGAAGCTG\",\"ACTTAACAT\",\"CCTTGCACG\",\"TGGGGGCAG\"]}")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -36,8 +37,9 @@ public class MutantIntegrationTest {
     @Order(2)
     void testMutantsFailure() throws Exception {
         mockMvc.perform(post("/api/v1/mutant")
-                        .content("{\"bases\": [\"AGCT\", \"TTAT\", \"GGCC\", \"ATTA\"]}")
+                        .content("{\"dna\": [\"AGCT\", \"TTAT\", \"GGCC\", \"ATTA\"]}")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
     }
+    
 }

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MutantsApplication {
 
     public static void main(String[] args) {
-        Generator.randomSequence();
+        //Generator.randomSequence();
         SpringApplication.run(MutantsApplication.class, args);
     }
 

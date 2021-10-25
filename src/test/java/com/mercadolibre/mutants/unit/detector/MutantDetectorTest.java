@@ -5,6 +5,8 @@ import com.mercadolibre.mutants.entities.Mutant;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MutantDetectorTest {
@@ -17,7 +19,7 @@ public class MutantDetectorTest {
     @Order(1)
     void testConsigna() {
         String[] dna = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
-        testMutant.setBases(dna);
+        testMutant.setDna(Arrays.asList(dna));
         assertTrue(mutantDetector.dnaAnalyze(testMutant));
     }
 
@@ -26,7 +28,7 @@ public class MutantDetectorTest {
     @Order(2)
     void testNoMutante() {
         String[] dna = {"AGCT", "TTAT", "GGCC", "ATTA"};
-        testMutant.setBases(dna);
+        testMutant.setDna(Arrays.asList(dna));
         assertFalse(mutantDetector.dnaAnalyze(testMutant));
     }
 
@@ -35,7 +37,7 @@ public class MutantDetectorTest {
     @Order(3)
     void testDiagonalInversa() {
         String[] dna = {"AGCTTG", "ACGTAG", "CCTAAA", "ATAGCC", "CAAAGG", "GTAGGT"};
-        testMutant.setBases(dna);
+        testMutant.setDna(Arrays.asList(dna));
         assertTrue(mutantDetector.dnaAnalyze(testMutant));
     }
 
@@ -44,7 +46,7 @@ public class MutantDetectorTest {
     @Order(4)
     void testExtra1() {
         String[] dna = {"AAAATG", "ACGTAG", "CCTAAA", "ATAGCC", "CAAAGG", "GTAGGT"};
-        testMutant.setBases(dna);
+        testMutant.setDna(Arrays.asList(dna));
         assertTrue(mutantDetector.dnaAnalyze(testMutant));
     }
 
@@ -53,7 +55,7 @@ public class MutantDetectorTest {
     @Order(5)
     void testExtra2() {
         String[] dna = {"TAAGAAAGG", "TAACGAGGG", "CCTATCCCT", "CAGAGCTGT", "GATTCTCGA", "CTGAAGCTG", "ACTTAACAT", "CCTTGCACG", "TGGGGGCAG"};
-        testMutant.setBases(dna);
+        testMutant.setDna(Arrays.asList(dna));
         assertTrue(mutantDetector.dnaAnalyze(testMutant));
     }
 }

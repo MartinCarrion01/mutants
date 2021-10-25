@@ -27,7 +27,7 @@ public class MutantDetector {
         Esto me convierte la lista de strings de la secuencia de adn en una
         lista de char[], eso me permite trabajarlo como una matriz al problema.
          */
-        for (String s : mutant.getBases()) {
+        for (String s : mutant.getDna()) {
             char[] buf = s.toCharArray();
             dnaCharArr.add(buf);
         }
