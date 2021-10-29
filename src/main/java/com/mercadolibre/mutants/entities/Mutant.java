@@ -20,8 +20,14 @@ public class Mutant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
-    @OrderColumn(name = "dnaOrden")
+    //Este string contiene el toString de el ADN enviado en la peticion a la api de mutantes
+    //Lo usamos para guardar el adn en la base de datos, pero no para el algoritmo de detección
+    @Lob
+    @Column(name = "dna")
+    private String dnaPersist;
+
+    //Este atributo es usado para trabajar la detección del mutante en el adn, no se persiste
+    @Transient
     private List<String> dna;
 
     @Column(name = "isMutant")

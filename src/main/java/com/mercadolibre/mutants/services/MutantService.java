@@ -23,6 +23,7 @@ public class MutantService {
             MutantDetector md = new MutantDetector();
             boolean isMutant = md.dnaAnalyze(mutant);
             mutant.setIsMutant(isMutant);
+            mutant.setDnaPersist(mutant.getDna().toString());
             mutant = mutantRepository.save(mutant);
             return mutant.getIsMutant();
         } catch (Exception e) {
